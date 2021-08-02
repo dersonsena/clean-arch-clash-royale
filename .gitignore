@@ -1,0 +1,24 @@
+# Paths
+node_modules/
+.idea/
+dist
+.docker
+
+# SO
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE
+.classpath
+.project
+.settings
+.idea
+.metadata
+*.iml
+*.ipr
