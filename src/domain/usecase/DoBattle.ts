@@ -44,8 +44,8 @@ export class DoBattle {
 
 export namespace DoBattle {
   export type InputData = {
-    deckPlayer1Id: number,
-    deckPlayer2Id: number
+    deckPlayer1Id: number|string,
+    deckPlayer2Id: number|string
   }
 
   export type OutputData = {

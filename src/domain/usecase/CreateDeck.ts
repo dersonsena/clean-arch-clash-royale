@@ -8,11 +8,8 @@ export class CreateDeck {
   ) {}
 
   async execute(inputData: CreateDeck.InputData): Promise<CreateDeck.OutputData> {
-    const deck = await this.deckRepository.create(
-      inputData.player,
-      inputData.cards,
-      inputData.capacity
-    );
+    const { player, cards, capacity } = inputData
+    const deck = await this.deckRepository.create(player, cards, capacity);
 
     return {
       id: deck.id,

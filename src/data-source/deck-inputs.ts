@@ -10,6 +10,10 @@ export const deckInputs = [
       new Card({ name: 'Tesla', level: 8, elixir: 4 }),
       new Card({ name: 'Wizard', level: 6, elixir: 5 }),
       new Card({ name: 'Valkyrie', level: 5, elixir: 4 }),
+      new Card({ name: 'Arrows', level: 7, elixir: 3 }),
+      new Card({ name: 'Balloon', level: 5, elixir: 5 }),
+      new Card({ name: 'Guards', level: 7, elixir: 3 }),
+      new Card({ name: 'Fireball', level: 9, elixir: 4 }),
     ]
   },
   {

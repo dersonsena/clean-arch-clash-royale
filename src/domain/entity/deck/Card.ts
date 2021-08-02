@@ -1,10 +1,10 @@
 import { CardError } from "../../error"
 
 export class Card {
-  readonly id?: number|string
-  readonly name: string
-  readonly level: number
-  readonly elixir: number
+  private id?: number|string
+  private name: string
+  private level: number
+  private elixir: number
 
   constructor({ id, name, level, elixir }: Card.Params) {
     if (level < 1 || level > 13) throw CardError.levelLimitExcedeed(name, level)
@@ -13,6 +13,18 @@ export class Card {
     this.name = name
     this.level = level
     this.elixir = elixir
+  }
+
+  getId (): number|string|undefined {
+    return this.id
+  }
+
+  setId (value: number | string) {
+    this.id = value
+  }
+
+  getElixir ():number {
+    return this.elixir
   }
 }
 

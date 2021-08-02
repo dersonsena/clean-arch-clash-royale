@@ -21,7 +21,7 @@ export class Deck {
   average (): number {
     let totalElixir = 0;
     for (let card of this.cards) {
-        totalElixir += card.elixir;
+        totalElixir += card.getElixir();
     }
 
     return Number((totalElixir / this.cards.length).toFixed(1));
