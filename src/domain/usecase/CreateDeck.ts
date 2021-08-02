@@ -16,6 +16,7 @@ export class CreateDeck {
 
     return {
       id: deck.id,
+      player: deck.player,
       elixirAverage: deck.average()
     }
   }
@@ -29,7 +30,8 @@ export namespace CreateDeck {
   }
 
   export type OutputData = {
-    id: number | string,
+    id?: number | string,
+    player: PlayerModel
     elixirAverage: number
   }
 

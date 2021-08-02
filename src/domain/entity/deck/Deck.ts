@@ -1,23 +1,16 @@
 import { Player } from "@/domain/entity/player";
-import { DeckCapacityExceededError } from "@/domain/entity/error";
+import { DeckError } from "@/domain/entity/error";
 import { Card } from "@/domain/entity/deck";
 
 export class Deck {
-  readonly id: number | string
+  readonly id?: number | string
   readonly cards: Card[]
   readonly player: Player
   readonly capacity: number = 8
 
-  constructor (
-    id: number | string,
-    cards: Card[],
-    player: Player,
-    capacity: number = 8
-  ) {
+  constructor ({ id, cards, player, capacity }: Deck.Params) {
     const cardLength = cards.length;
-    if (cardLength > this.capacity) {
-      throw new DeckCapacityExceededError(this.capacity, cardLength)
-    }
+    if (cardLength > this.capacity) throw DeckError.capacityExeceeded(this.capacity, cardLength)
 
     this.id = id
     this.cards = cards
@@ -32,5 +25,14 @@ export class Deck {
     }
 
     return Number((totalElixir / this.cards.length).toFixed(1));
+  }
+}
+
+export namespace Deck {
+  export type Params = {
+    id?: number | string,
+    cards: Card[],
+    player: Player,
+    capacity: number
   }
 }

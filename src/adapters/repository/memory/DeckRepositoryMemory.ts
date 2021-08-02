@@ -7,7 +7,7 @@ export class DeckRepositoryMemory implements DeckRepository {
   private readonly decks: Deck[] = [];
 
   async create(player: Player, cards: Card[], capacity: number): Promise<Deck> {
-    const deck = new Deck(this.id, cards, player, capacity)
+    const deck = new Deck({ id: this.id, cards, player, capacity })
     this.decks.push(deck)
     this.id++
     return Promise.resolve(deck)
