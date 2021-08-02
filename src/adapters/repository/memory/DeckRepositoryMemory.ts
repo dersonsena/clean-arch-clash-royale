@@ -1,4 +1,5 @@
 import { Card, Deck } from '@/domain/entity/deck';
+import { DeckError } from '@/domain/entity/error';
 import { Player } from '@/domain/entity/player';
 import { DeckRepository } from '@/domain/repository';
 
@@ -11,5 +12,11 @@ export class DeckRepositoryMemory implements DeckRepository {
     this.decks.push(deck)
     this.id++
     return Promise.resolve(deck)
+  }
+
+  async getById(deckId: number): Promise<Deck> {
+    const selected = this.decks.find(deck => deck.id === deckId)
+    if (!selected) throw DeckError.deckNotFound(deckId)
+    return selected
   }
 }

@@ -7,4 +7,11 @@ export class DeckError extends DomainError {
       `DeckCapacityExceededError`
     )
   }
+
+  static deckNotFound(deckId: number|string) {
+    return new DeckError(
+      `Deck with id "${deckId}" wasn't found`,
+      `DeckNotFoundError`
+    )
+  }
 }
