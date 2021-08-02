@@ -1,28 +1,30 @@
+import { MongoOrm } from "@/adapter/contracts";
 import { Card, Deck } from "@/domain/entity/deck";
 import { Player } from "@/domain/entity/player";
 import { DeckError } from "@/domain/error";
 import { DeckRepository } from "@/domain/repository";
-import mongoose from "mongoose";
-import { DeckModel } from './models';
 
 export class DeckRepositoryMongo implements DeckRepository {
+  constructor (
+    private readonly mongoOrm: MongoOrm
+  ) {}
+
   async getById(deckId: number|string): Promise<Deck> {
-    const deckDocument = await DeckModel.findById(deckId).exec()
+    const deckDocument = await this.mongoOrm.findById(deckId)
     if (!deckDocument) throw DeckError.deckNotFound(deckId)
     return this.createDeckFromDocument(deckDocument)
   }
 
   async create(player: Player, cards: Card[], capacity: number): Promise<Deck> {
-    player.setId(mongoose.Types.ObjectId().toString())
+    player.setId(this.mongoOrm.generateId())
     const playerMongo = { ...player, _id: player.getId() }
     
     const cardsMongo = cards.map((card: Card) => {
-      card.setId(mongoose.Types.ObjectId().toString())
+      card.setId(this.mongoOrm.generateId())
       return { ...card, _id: card.getId()}
     })
 
-    const deckModel = new DeckModel({ cards: cardsMongo, capacity, player: playerMongo })
-    const deckDocument = await deckModel.save()
+    const deckDocument = await this.mongoOrm.insert({ cards: cardsMongo, capacity, player: playerMongo })
     return this.createDeckFromDocument(deckDocument)
   }
 
