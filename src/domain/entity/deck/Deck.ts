@@ -1,5 +1,5 @@
 import { Player } from "@/domain/entity/player";
-import { DeckError } from "@/domain/entity/error";
+import { DeckError } from "@/domain/error";
 import { Card } from "@/domain/entity/deck";
 
 export class Deck {
@@ -25,6 +25,10 @@ export class Deck {
     }
 
     return Number((totalElixir / this.cards.length).toFixed(1));
+  }
+
+  isTotallyFilled (): boolean {
+    return this.cards.length === this.capacity
   }
 }
 

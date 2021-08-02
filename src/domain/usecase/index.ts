@@ -1,2 +1,2 @@
-export * from './CreateBattle'
+export * from './DoBattle'
 export * from './CreateDeck'

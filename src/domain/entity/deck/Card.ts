@@ -1,4 +1,4 @@
-import { CardError } from "../error"
+import { CardError } from "../../error"
 
 export class Card {
   readonly id?: number|string

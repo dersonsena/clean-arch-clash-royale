@@ -1,6 +1,6 @@
 export abstract class DomainError extends Error {
   constructor(message: string, errorName: string) {
-    super(`Domain Error - ${message}`)
+    super(message)
     this.name = errorName
   }
 }

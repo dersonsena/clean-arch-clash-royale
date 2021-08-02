@@ -1,12 +1,28 @@
 export class Player {
-  readonly name: string
-  readonly trophy: number
-  readonly clan: string
+  private name: string
+  private trophy: number
+  private clan: string
 
   constructor ({ name, trophy, clan }: Player.Params) {
     this.name = name
     this.trophy = trophy
     this.clan = clan
+  }
+
+  getName (): string {
+    return this.name
+  }
+
+  getTrophy (): number {
+    return this.trophy
+  }
+
+  increaseTrophy (value: number) {
+    this.trophy += value
+  }
+
+  decreaseTrophy (value: number) {
+    this.trophy -= value
   }
 }
 
