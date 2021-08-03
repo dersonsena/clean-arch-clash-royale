@@ -9,14 +9,3 @@ Connection.connectMongo().then(() => {
   expressApp.listen(5000, () => console.log(`Express Server running at http://localhost:5000`))
   hapiApp.start().then(() => console.log(`Hapi Server running at http://localhost:5001`))
 })
-
-// (async function () {
-//   console.log("====== BATTLE TIME !! ======");
-//   const battle = new DoBattle(deckRepositoryMemory)
-//   const battleResult = await battle.execute({
-//     deckPlayer1Id: 2,
-//     deckPlayer2Id: 3
-//   })
-  
-//   console.log(battleResult)
-// })()

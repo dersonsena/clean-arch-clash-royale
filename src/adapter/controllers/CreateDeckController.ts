@@ -1,4 +1,3 @@
-import { deckInputs } from "@/data-source";
 import { Card } from "@/domain/entity/deck";
 import { Player } from "@/domain/entity/player";
 import { CreateDeck } from "@/domain/usecase";

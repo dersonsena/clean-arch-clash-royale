@@ -9,7 +9,7 @@ const routes: AppRoute[] = [
     meta: []
   },
   {
-    method: "GET",
+    method: "POST",
     path: "/do-battle",
     controller: new DoBattleController(),
     meta: []
