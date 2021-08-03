@@ -5,7 +5,6 @@ import { deckInputs } from '@/data-source'
 import { DoBattle } from '@/domain/usecase';
 import { DeckRepositoryMongo } from '@/adapter/repository/mongo';
 import { Connection, MongooseAdapter } from '@/infra/mongodb';
-//import { app } from './config/app';
 import { expressApp } from '@/infra/http'
 import { hapiApp } from '@/infra/http'
 

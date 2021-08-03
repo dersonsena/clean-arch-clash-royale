@@ -1,14 +1,26 @@
-import { Express, Router } from 'express'
-import { readdirSync } from 'fs'
+import { HttpController } from "@/adapter/contracts/HttpController";
+import { CreateDeckController, DoBattleController } from "@/adapter/controllers";
 
-export default (app: Express): void => {
-  const router = Router()
-  app.use('/api', router)
-  app.get('/health', (req, res) => res.json({ status: 'alive' }))
-
-  readdirSync(`${__dirname}/../routes`).map(async file => {
-    if (!file.endsWith('.map')) {
-      (await import(`@/main/routes/${file}`)).default(router)
-    }
-  })
+export type AppRoute = {
+  method: string,
+  path: string,
+  controller: HttpController,
+  meta: object[]
 }
+
+const routes: AppRoute[] = [
+  {
+    method: "GET",
+    path: "/create-deck",
+    controller: new CreateDeckController,
+    meta: []
+  },
+  {
+    method: "GET",
+    path: "/do-battle",
+    controller: new DoBattleController,
+    meta: []
+  }
+]
+
+export default routes

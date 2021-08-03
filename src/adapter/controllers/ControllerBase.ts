@@ -1,12 +1,15 @@
-export abstract class ControllerBase {
-  //abstract perform (httpRequest: any): Promise<any>
-  abstract perform (params: object, queryString: object, body: any): Promise<any>
+import { HttpController, HttpRequest } from "../contracts/HttpController";
 
-  // async handle (httpRequest: any): Promise<any> {
-  //   try {
-  //     return await this.perform(httpRequest)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
+export abstract class ControllerBase implements HttpController {
+  perform (httpRequest: HttpRequest): Promise<object> {
+    throw new Error("Controller is not implemented.");
+  }
+
+  async handle (httpRequest: HttpRequest): Promise<any> {
+    try {
+      return await this.perform(httpRequest)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }

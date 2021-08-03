@@ -1,5 +1,5 @@
-import { CreateDeckController } from '@/adapter/controllers/CreateDeckController'
 import { HapiAdapter } from '@/adapter/http'
+import routes from '@/main/config/routes'
 import Hapi from '@hapi/hapi'
 
 const hapiApp = Hapi.server({
@@ -7,10 +7,10 @@ const hapiApp = Hapi.server({
   host: "localhost"
 })
 
-hapiApp.route({
-  method: "GET",
-  path: "/create-deck",
-  handler: HapiAdapter.adapt((new CreateDeckController).perform)
-})
+routes.forEach(route => hapiApp.route({
+  method: route.method,
+  path: route.path,
+  handler: HapiAdapter.adapt(route.controller.perform)
+}))
 
 export { hapiApp }

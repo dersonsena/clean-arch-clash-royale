@@ -1,7 +1,7 @@
-import { HttpRequest } from "../contracts/HttpController";
-import { ControllerBase } from "./ControllerBase";
+import { HttpRequest } from "../contracts/HttpController"
+import { ControllerBase } from "./ControllerBase"
 
-export class CreateDeckController extends ControllerBase {
+export class DoBattleController extends ControllerBase {
   constructor () {
     super()
   }
