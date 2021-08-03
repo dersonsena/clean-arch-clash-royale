@@ -1,7 +1,7 @@
 import { ExpressAdapter } from '@/adapter/http'
 import express, { json } from 'express'
 import cors from 'cors'
-import routes from '@/main/config/routes'
+import { CreateDeckController, DoBattleController } from '@/adapter/controllers'
 
 const expressApp = express()
 
@@ -13,16 +13,24 @@ expressApp.use((request, response, next) => {
   next()
 })
 
-routes.forEach(route => {
-  switch (route.method) {
-    case "GET":
-      expressApp.get(route.path, ExpressAdapter.adapt(route.controller.perform))
-      break
+expressApp.post('/create-deck', (req, res) => {
+  const payload = (new CreateDeckController()).handle({
+    routeParams: req.params,
+    query: req.query,
+    body: req.body
+  })
 
-    case "POST":
-      expressApp.post(route.path, ExpressAdapter.adapt(route.controller.perform))
-      break
-  }
+  res.json(payload)
+})
+
+expressApp.post('/do-battle', (req, res) => {
+  const payload = (new DoBattleController()).handle({
+    routeParams: req.params,
+    query: req.query,
+    body: req.body
+  })
+
+  res.json(payload)
 })
 
 export { expressApp }

@@ -1,5 +1,5 @@
+import { CreateDeckController, DoBattleController } from '@/adapter/controllers'
 import { HapiAdapter } from '@/adapter/http'
-import routes from '@/main/config/routes'
 import Hapi from '@hapi/hapi'
 
 const hapiApp = Hapi.server({
@@ -7,10 +7,28 @@ const hapiApp = Hapi.server({
   host: "localhost"
 })
 
-routes.forEach(route => hapiApp.route({
-  method: route.method,
-  path: route.path,
-  handler: HapiAdapter.adapt(route.controller.perform)
-}))
+hapiApp.route({
+  method: "POST",
+  path: '/create-deck',
+  handler: (req) => {
+    return (new CreateDeckController()).handle({
+      routeParams: req.params,
+      query: req.query,
+      body: req.payload
+    })
+  }
+})
+
+hapiApp.route({
+  method: "POST",
+  path: '/do-battle',
+  handler: (req) => {
+    return (new DoBattleController()).handle({
+      routeParams: req.params,
+      query: req.query,
+      body: req.payload
+    })
+  }
+})
 
 export { hapiApp }

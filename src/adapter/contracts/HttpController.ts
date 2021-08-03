@@ -1,5 +1,5 @@
 export interface HttpController<T = object> {
-  perform (httpRequest: HttpRequest): Promise<T>
+  handle (httpRequest: HttpRequest): Promise<any>
 }
 
 export type HttpRequest<T = any> = {

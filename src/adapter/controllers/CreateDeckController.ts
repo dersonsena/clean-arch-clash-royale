@@ -1,5 +1,3 @@
-import { Card } from "@/domain/entity/deck";
-import { Player } from "@/domain/entity/player";
 import { CreateDeck } from "@/domain/usecase";
 import { MongooseAdapter } from "@/infra/mongodb";
 import { HttpRequest } from "../contracts/HttpController";
@@ -8,11 +6,7 @@ import { DeckRepositoryMongo } from "../repository/mongo";
 import { ControllerBase } from "./ControllerBase";
 
 export class CreateDeckController extends ControllerBase {
-  constructor () {
-    super()
-  }
-
-  override async perform (httpRequest: HttpRequest): Promise<object> {
+  async perform (httpRequest: HttpRequest): Promise<object> {
     // In Memory
     const deckRepositoryMemory = new DeckRepositoryMemory();
 

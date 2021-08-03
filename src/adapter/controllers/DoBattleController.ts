@@ -6,11 +6,7 @@ import { DeckRepositoryMongo } from "../repository/mongo";
 import { ControllerBase } from "./ControllerBase"
 
 export class DoBattleController extends ControllerBase {
-  constructor () {
-    super()
-  }
-
-  override async perform (httpRequest: HttpRequest): Promise<object> {
+  async perform (httpRequest: HttpRequest): Promise<object> {
     // In Memory
     const deckRepositoryMemory = new DeckRepositoryMemory();
 
