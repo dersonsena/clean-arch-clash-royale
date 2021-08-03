@@ -8,6 +8,6 @@ export class DoBattleController extends ControllerBase {
 
   override async perform (httpRequest: HttpRequest): Promise<object> {
     console.log({ httpRequest })
-    return { status: 'ok', message: 'Create Deck Controller' }
+    return { status: 'ok', message: 'Do Battle Controller' }
   }
 }
