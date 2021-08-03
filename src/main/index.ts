@@ -5,11 +5,15 @@ import { deckInputs } from '@/data-source'
 import { DoBattle } from '@/domain/usecase';
 import { DeckRepositoryMongo } from '@/adapter/repository/mongo';
 import { Connection, MongooseAdapter } from '@/infra/mongodb';
-import { app } from './config/app';
+//import { app } from './config/app';
+import { expressApp } from '@/infra/http'
+import { hapiApp } from '@/infra/http'
 
 // docker run --name mongo-clash-royale -p 27017:27017 -d mongo:latest
 
-app.listen(5000, () => console.log(`Server running at http://localhost:5000`))
+// Express Application
+expressApp.listen(5000, () => console.log(`Express Server running at http://localhost:5000`))
+hapiApp.start().then(() => console.log(`Hapi Server running at http://localhost:5001`))
 
 // // In Memory
 // const deckRepositoryMemory = new DeckRepositoryMemory();
