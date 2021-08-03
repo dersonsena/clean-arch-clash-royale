@@ -22,4 +22,8 @@ export class DeckError extends DomainError {
       `DeckIsNotFilledError`
     )
   }
+
+  static samePlayer () {
+    return new DeckError(`You cannot battle yourself.`, `SamePlayerError`)
+  }
 }

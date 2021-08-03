@@ -13,6 +13,8 @@ export class DoBattle {
   ) {}
 
   async execute(inputData: DoBattle.InputData): Promise<DoBattle.OutputData> {
+    if (inputData.deckPlayer1Id === inputData.deckPlayer2Id) throw DeckError.samePlayer()
+
     const deck1 = await this.deckRepository.getById(inputData.deckPlayer1Id)
     const deck2 = await this.deckRepository.getById(inputData.deckPlayer2Id)
 

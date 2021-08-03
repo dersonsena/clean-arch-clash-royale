@@ -27,6 +27,10 @@ export class Player {
     return this.trophy
   }
 
+  getClan (): string {
+    return this.clan
+  }
+
   increaseTrophy (value: number) {
     this.trophy += value
   }

@@ -18,12 +18,11 @@ export class DoBattleController extends ControllerBase {
     const mongoOrm = new MongooseAdapter()
     const deckRepositoryMongo = new DeckRepositoryMongo(mongoOrm);
 
-    let { deckPlayer1Id, deckPlayer2Id } = httpRequest.body
     // ~> validate request payload here !
 
     console.log("====== BATTLE TIME !! ======");
     const battle = new DoBattle(deckRepositoryMongo)
-    const battleResult = await battle.execute({ deckPlayer1Id, deckPlayer2Id })
+    const battleResult = await battle.execute(httpRequest.body)
     
     console.log(battleResult)
 

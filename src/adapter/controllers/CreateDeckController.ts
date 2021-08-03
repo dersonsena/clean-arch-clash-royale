@@ -20,25 +20,10 @@ export class CreateDeckController extends ControllerBase {
     const mongoOrm = new MongooseAdapter()
     const deckRepositoryMongo = new DeckRepositoryMongo(mongoOrm);
 
-    let { cards, player, capacity } = httpRequest.body
     // ~> validate request payload here !
 
-    cards = cards.map((card: any) => new Card({
-      id: card.id,
-      name: card.name,
-      level: card.level,
-      elixir: card.elixir
-    }))
-
-    player = new Player({
-      id: player.id,
-      name: player.name,
-      trophy: player.trophy,
-      clan: player.clan
-    })
-
     const createDeck = new CreateDeck(deckRepositoryMongo)
-    const deckData = await createDeck.execute({ player, cards, capacity })
+    const deckData = await createDeck.execute(httpRequest.body)
     
     console.log("====== DECK CRIADO ======")
     console.log(deckData)
